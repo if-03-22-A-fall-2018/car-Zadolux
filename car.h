@@ -1,10 +1,10 @@
 /*----------------------------------------------------------
-*				HTBLA-Leonding / Klasse: <your class>
+*				HTBLA-Leonding / Klasse: 2AHIF
 * ---------------------------------------------------------
 * Exercise Number: 0
 * Title:			car.h
-* Author:			P. Bauer
-* Due Date:		January 9, 2015
+* Author:			M. Wallinger
+* Due Date:		November 20, 2018
 * ----------------------------------------------------------
 * Description:
 * Car abstract data type demo.
