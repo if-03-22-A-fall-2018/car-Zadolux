@@ -13,14 +13,19 @@
 #ifndef ___CAR_H
 #define ___CAR_H
 
+enum CarType { JEEP, AIXAM, FIAT_MULTIPLA };
+enum Color { RED, GREEN, BLUE, ORANGE, SILVER, BLACK };
+
 typedef struct CarImplementation* Car;
 
 struct CarImplementation {
-
-}
-
-enum CarType { JEEP, AIXAM, FIAT_MULTIPLA };
-enum Color { RED, GREEN, BLUE, ORANGE, SILVER, BLACK };
+  enum CarType type;
+  enum Color color;
+  double speed;
+  double acceleration_rate;
+  double fill_level;
+  bool rented;
+};
 
 Car get_car(CarType car);
 enum CarType get_type(Car car);
