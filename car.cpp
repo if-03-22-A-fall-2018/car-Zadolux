@@ -12,16 +12,21 @@
 */
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 #include "car.h"
 
 #define CAR_PARK_SPACE 6
 
+double max_acceleration_rates[FIAT_MULTIPLA + 1] {
+  3.14, 1.00, 2.26
+};
+
+struct CarImplementation jeep1 = {JEEP, SILVER, 0, 0, 80, false};
+struct CarImplementation jeep2 = {JEEP, BLACK, 0, 0, 80, false};
+struct CarImplementation aixam = {AIXAM, RED, 0, 0, 16, false};
 struct CarImplementation multipla1 = {FIAT_MULTIPLA, GREEN, 0, 0, 65, false};
 struct CarImplementation multipla2 = {FIAT_MULTIPLA, BLUE, 0, 0, 65, false};
 struct CarImplementation multipla3 = {FIAT_MULTIPLA, ORANGE, 0, 0, 65, false};
-struct CarImplementation aixam = {AIXAM, RED, 0, 0, 16, false};
-struct CarImplementation jeep1 = {JEEP, SILVER, 0, 0, 80, false};
-struct CarImplementation jeep2 = {JEEP, BLACK, 0, 0, 80, false};
 
 Car car_park[CAR_PARK_SPACE] = {&aixam, &multipla1, &multipla2, &multipla3, &jeep1, &jeep2};
 
@@ -89,7 +94,21 @@ int get_speed(Car car)
 
 void set_acceleration_rate(Car car, double rate)
 {
-  car->acceleration_rate = rate;
+  if(rate > -8.0)
+  {
+    if(rate < max_acceleration_rates[car->type])
+    {
+      car->acceleration_rate = round(rate);
+    }
+    else
+    {
+      car->acceleration_rate = max_acceleration_rates[car->type];
+    }
+  }
+  else
+  {
+    car->acceleration_rate = -8.0;
+  }
 }
 
 void accelerate(Car car)
