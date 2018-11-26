@@ -89,7 +89,7 @@ double get_acceleration_rate(Car car)
 
 int get_speed(Car car)
 {
-  return car->speed;
+  return round(car->speed);
 }
 
 void set_acceleration_rate(Car car, double rate)
