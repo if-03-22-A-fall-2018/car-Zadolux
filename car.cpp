@@ -14,35 +14,39 @@
 #include <stdbool.h>
 #include "car.h"
 
-Car aixam = {AIXAM, RED, 0, 0, 16, false};
-Car multipla1 = {FIAT_MULTIPLA, GREEN, 0, 0, 65, false};
-Car multipla2 = {FIAT_MULTIPLA, BLUE, 0, 0, 65, false};
-Car multipla3 = {FIAT_MULTIPLA, ORANGE, 0, 0, 65, false};
-Car jeep1 = {JEEP, SILVER, 0, 0, 80, false};
-Car jeep2 = {JEEP, BLACK, 0, 0, 80, false};
+#define CAR_PARK_SPACE 6
 
-Car car_park[6] = {
-  &aixam,
-  &multipla1,
-  &multipla2,
-  &multipla3,
-  &jeep1,
-  &jeep2
-};
+struct CarImplementation multipla1 = {FIAT_MULTIPLA, GREEN, 0, 0, 65, false};
+struct CarImplementation multipla2 = {FIAT_MULTIPLA, BLUE, 0, 0, 65, false};
+struct CarImplementation multipla3 = {FIAT_MULTIPLA, ORANGE, 0, 0, 65, false};
+struct CarImplementation aixam = {AIXAM, RED, 0, 0, 16, false};
+struct CarImplementation jeep1 = {JEEP, SILVER, 0, 0, 80, false};
+struct CarImplementation jeep2 = {JEEP, BLACK, 0, 0, 80, false};
 
-Car get_car(CarType car)
+Car car_park[CAR_PARK_SPACE] = {&aixam, &multipla1, &multipla2, &multipla3, &jeep1, &jeep2};
+
+Car get_car(CarType car_type)
 {
+  for(int i = 0; i < CAR_PARK_SPACE; i++)
+  {
+    if((car_park[i]->type == car_type) && (!car_park[i]->rented))
+    {
+      car_park[i]->rented = true;
+      return car_park[i];
+    }
+  }
+
   return 0;
 }
 
 enum CarType get_type(Car car)
 {
-  return AIXAM;
+  return car->type;
 }
 
 enum Color get_color(Car car)
 {
-  return BLACK;
+  return car->color;
 }
 
 void init()
@@ -52,7 +56,7 @@ void init()
 
 double get_fill_level(Car car)
 {
-  return 0.0;
+  return car->fill_level;
 }
 
 double get_acceleration_rate(Car car)
