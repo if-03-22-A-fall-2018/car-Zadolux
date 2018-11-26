@@ -51,7 +51,25 @@ enum Color get_color(Car car)
 
 void init()
 {
+  for(int i = 0; i < CAR_PARK_SPACE; i++)
+  {
+    car_park[i]->rented = false;
+    car_park[i]->speed = 0;
+    car_park[i]->acceleration_rate = 0;
 
+    switch(car_park[i]->type)
+    {
+      case AIXAM:
+        car_park[i]->fill_level = 16;
+        break;
+      case JEEP:
+        car_park[i]->fill_level = 80;
+        break;
+      case FIAT_MULTIPLA:
+        car_park[i]->fill_level = 65;
+        break;
+    }
+  }
 }
 
 double get_fill_level(Car car)
