@@ -79,20 +79,20 @@ double get_fill_level(Car car)
 
 double get_acceleration_rate(Car car)
 {
-  return 0.0;
+  return car->acceleration_rate;
 }
 
 int get_speed(Car car)
 {
-  return 0;
+  return car->speed;
 }
 
 void set_acceleration_rate(Car car, double rate)
 {
-
+  car->acceleration_rate = rate;
 }
 
 void accelerate(Car car)
 {
-
+  car->speed += car->acceleration_rate * 3.6;
 }
