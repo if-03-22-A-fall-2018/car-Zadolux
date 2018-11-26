@@ -17,9 +17,8 @@
 
 #define CAR_PARK_SPACE 6
 
-double max_acceleration_rates[FIAT_MULTIPLA + 1] {
-  3.14, 1.00, 2.26
-};
+double max_acceleration_rates[FIAT_MULTIPLA + 1] {3.14, 1.00, 2.26};
+int max_speeds[FIAT_MULTIPLA + 1] {196, 45, 170};
 
 struct CarImplementation jeep1 = {JEEP, SILVER, 0, 0, 80, false};
 struct CarImplementation jeep2 = {JEEP, BLACK, 0, 0, 80, false};
@@ -114,4 +113,9 @@ void set_acceleration_rate(Car car, double rate)
 void accelerate(Car car)
 {
   car->speed += car->acceleration_rate * 3.6;
+
+  if(car->speed > max_speeds[car->type])
+  {
+    car->speed = max_speeds[car->type];
+  }
 }
