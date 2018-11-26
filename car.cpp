@@ -97,7 +97,7 @@ void set_acceleration_rate(Car car, double rate)
   {
     if(rate < max_acceleration_rates[car->type])
     {
-      car->acceleration_rate = round(rate);
+      car->acceleration_rate = rate;
     }
     else
     {
